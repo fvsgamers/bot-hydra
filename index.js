@@ -90,10 +90,3 @@ client.login(token)
     console.log('🔑 Tentando logar o bot...');
   })
   .catch(err => console.error('❌ Erro ao logar o bot:', err));
-
-// Evento ready
-client.once('ready', () => {
-  botOnline = true;
-  console.log(`✅ Bot online como ${client.user.tag}`);
-  checkReady();
-});
