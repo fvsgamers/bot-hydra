@@ -51,4 +51,5 @@ client.login(process.env.TOKEN)
 
 client.once('ready', () => {
   console.log(`✅ Bot online como ${client.user.tag}`);
+  console.log(`🌐 Servidores: ${client.guilds.cache.size}`);
 });
