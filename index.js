@@ -89,6 +89,6 @@ if (!token) {
 
 client.login(token)
   .then(() => {
-    console.log('🔑 Tentando logar o bot...');
+    console.log('🔑 Login enviado, aguardando ready...');
   })
   .catch(err => console.error('❌ Erro ao logar o bot:', err));
