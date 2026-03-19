@@ -36,12 +36,12 @@ process.on('unhandledRejection', console.error);
 client.on('error', console.error);
 
 // ===== Login do bot =====
-if (!process.env.BOT_TOKEN) {
+if (!process.env.TOKEN) {
   console.error('❌ TOKEN não definido!');
   process.exit(1);
 }
 
-client.login(process.env.BOT_TOKEN)
+client.login(process.env.TOKEN)
   .then(() => console.log('🔑 Tentando logar o bot...'))
   .catch(err => console.error('❌ Erro ao logar o bot:', err));
 
