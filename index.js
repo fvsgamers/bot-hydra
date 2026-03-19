@@ -87,9 +87,8 @@ if (!token) {
   process.exit(1);
 }
 
-client.login(token);
-//client.login(token)
-//  .then(() => {
-//    console.log('🔑 Tentando logar o bot...');
-//  })
-//  .catch(err => console.error('❌ Erro ao logar o bot:', err));
+client.login(token)
+  .then(() => {
+    console.log('🔑 Tentando logar o bot...');
+  })
+  .catch(err => console.error('❌ Erro ao logar o bot:', err));
