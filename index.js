@@ -13,7 +13,12 @@ app.listen(PORT, () => console.log(`🌐 Web server online na porta ${PORT}`));
 
 // ===== Cliente do Discord =====
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+  intents: [
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMembers,
+  GatewayIntentBits.GuildPresences,    // para status online/offline
+  GatewayIntentBits.MessageContent      // para ler conteúdo das mensagens
+  ]
 });
 
 client.commands = new Collection();
