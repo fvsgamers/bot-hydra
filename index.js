@@ -1,5 +1,5 @@
 // index.js
-require('dotenv').config(); // Para rodar localmente. No Render, TOKEN vem do Environment
+//require('dotenv').config(); // Para rodar localmente. No Render, TOKEN vem do Environment
 
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
