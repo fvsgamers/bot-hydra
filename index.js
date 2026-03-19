@@ -90,3 +90,6 @@ client.login(token)
     console.log('🔑 Tentando logar o bot...');
   })
   .catch(err => console.error('❌ Erro ao logar o bot:', err));
+
+process.on('uncaughtException', (err) => console.error('💥 Erro não capturado:', err));
+process.on('unhandledRejection', (err) => console.error('💥 Rejeição não tratada:', err));
