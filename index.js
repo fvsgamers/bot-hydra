@@ -1,17 +1,17 @@
-//require('dotenv').config();
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
-const config = require('./config.json');
 const express = require('express');
 
-const app = express();
+// Configurações (se você tiver config.json)
+const config = require('./config.json');
 
-// ===== Keep-Alive (opcional no Discloud pago) =====
+// ===== Express Keep-Alive =====
+const app = express();
 app.get('/', (req, res) => res.send('Bot online!'));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🌐 Web server online na porta ${PORT}`));
 
-// ===== Criar cliente do Discord =====
+// ===== Cliente do Discord =====
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
@@ -19,16 +19,20 @@ const client = new Client({
 client.commands = new Collection();
 
 // ===== Carregar comandos =====
-const commandFiles = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.data.name, command);
+if (fs.existsSync('./commands')) {
+  const commandFiles = fs.readdirSync('./commands').filter(f => f.endsWith('.js'));
+  for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.data.name, command);
+  }
 }
 
 // ===== Carregar eventos =====
-const eventFiles = fs.readdirSync('./events');
-for (const file of eventFiles) {
-  require(`./events/${file}`)(client);
+if (fs.existsSync('./events')) {
+  const eventFiles = fs.readdirSync('./events').filter(f => f.endsWith('.js'));
+  for (const file of eventFiles) {
+    require(`./events/${file}`)(client);
+  }
 }
 
 // ===== Tratamento de erros =====
@@ -37,7 +41,7 @@ client.on('error', console.error);
 
 // ===== Login do bot =====
 if (!process.env.BOT_TOKEN) {
-  console.error('❌ TOKEN não definido!');
+  console.error('❌ BOT_TOKEN não definido! Configure no painel do Render.');
   process.exit(1);
 }
 
