@@ -2,8 +2,9 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
 const express = require('express');
-require('dotenv').config(); // Caso queira usar .env para o token
-
+//require('dotenv').config(); // Caso queira usar .env para o token
+console.log('🚀 Iniciando index.js...');
+console.log('🔑 Tentando logar com token...');
 // ===== CONFIGURAÇÃO =====
 const config = require('./config.json'); // Opcional, caso tenha configs extras
 
