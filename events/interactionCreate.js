@@ -95,7 +95,7 @@ module.exports = (client) => {
         .addOptions(options)
     );
 
-    const selectCargo = new ActionRowBuilder().addComponents(
+	const selectCargo = new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(`cargo_${nome}_${id}_${telefone}`)
         .setPlaceholder('Selecione o cargo')
@@ -105,9 +105,19 @@ module.exports = (client) => {
 		])
     );
 
+	const selectCidade = new ActionRowBuilder().addComponents(
+      new StringSelectMenuBuilder()
+        .setCustomId(`cidade_${nome}_${id}_${telefone}`)
+        .setPlaceholder('Selecione a cidade')
+        .addOptions([
+		  { label: 'Utopia', value: '1506011300411474050' },
+		  { label: 'Capao Redondo', value: '1506012158939496570' }
+		])
+    );
+
     return interaction.reply({
       content: 'Selecione recrutador e cargo:',
-      components: [selectRecrutador, selectCargo],
+      components: [selectRecrutador, selectCargo, selectCidade],
       flags: 64
     });
 
@@ -177,7 +187,9 @@ module.exports = (client) => {
             { name: 'Nome', value: dados.nome },
             { name: 'ID', value: dados.id },
             { name: 'Telefone', value: dados.telefone },
-            { name: 'Cargo', value: dados.cargo }
+            { name: 'Cargo', value: dados.cargo },
+			{ name: 'Recrutador', value: dados.recrutador },
+			{ name: 'Cidade', value: dados.cidade }
           );
 
         const botoes = new ActionRowBuilder().addComponents(
@@ -250,6 +262,18 @@ module.exports = (client) => {
 		  await membro.roles.add([
 			'1483887249476288683',
 			'1483904036720607303'
+		  ]);
+		}
+		//Cidade Utopia
+		if (cargoEscolhido === '1506011300411474050') {
+		  await membro.roles.add([
+			'1506011300411474050'
+		  ]);
+		}
+		//Cidade Capão Redondo
+		if (cargoEscolhido === '1506012158939496570') {
+		  await membro.roles.add([
+			'1506012158939496570'
 		  ]);
 		}
 
