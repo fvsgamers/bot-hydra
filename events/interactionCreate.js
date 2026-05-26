@@ -109,7 +109,7 @@ module.exports = (client) => {
       config.cargosCidades.some(c => m.roles.cache.has(c))
     );
 
-    const options = recrutadores.map(m => ({
+    const options = cidade.map(m => ({
       label: m.displayName,
       value: m.id
     })).slice(0, 25);
