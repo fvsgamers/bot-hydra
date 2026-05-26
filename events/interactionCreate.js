@@ -105,6 +105,22 @@ module.exports = (client) => {
 		])
     );
 
+	const cidades = interaction.guild.members.cache.filter(m =>
+      config.cargosCidades.some(c => m.roles.cache.has(c))
+    );
+
+    const options = recrutadores.map(m => ({
+      label: m.displayName,
+      value: m.id
+    })).slice(0, 25);
+
+    if (options.length === 0) {
+      return interaction.reply({
+        content: '❌ Nenhum recrutador encontrado!',
+        flags: 64
+      });
+    }
+
 	const selectCidade = new ActionRowBuilder().addComponents(
       new StringSelectMenuBuilder()
         .setCustomId(`cidade_${nome}_${id}_${telefone}`)
