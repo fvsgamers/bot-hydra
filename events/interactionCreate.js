@@ -129,7 +129,7 @@ module.exports = (client) => {
     );
 
     return interaction.reply({
-      content: 'Selecione recrutador e cargo:',
+      content: 'Selecione recrutador, cargo e cidade:',
       components: [selectRecrutador, selectCargo, selectCidade],
       flags: 64
     });
