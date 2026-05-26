@@ -109,7 +109,7 @@ module.exports = (client) => {
       config.cargosCidades.some(c => m.roles.cache.has(c))
     );
 
-    const options = cidade.map(m => ({
+    const options = cidades.map(m => ({
       label: m.displayName,
       value: m.id
     })).slice(0, 25);
@@ -125,10 +125,7 @@ module.exports = (client) => {
       new StringSelectMenuBuilder()
         .setCustomId(`cidade_${nome}_${id}_${telefone}`)
         .setPlaceholder('Selecione a cidade')
-        .addOptions([
-		  { label: 'Utopia', value: '1506011300411474050' },
-		  { label: 'Capao Redondo', value: '1506012158939496570' }
-		])
+        .addOptions(options)
     );
 
     return interaction.reply({
